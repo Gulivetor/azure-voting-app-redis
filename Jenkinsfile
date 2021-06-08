@@ -11,8 +11,8 @@ pipeline {
             steps {
                 powershell 'docker images -a'
                 powershell """
-                    [Environment]::SetEnvironmentVariable(\"LCOW_SUPPORTED\", \"1\", \"Machine\")
-                    Restart-Service docker
+                    & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchLinuxEngine
+                    sleep 10
                 """
                 powershell """
                     cd azure-vote/
