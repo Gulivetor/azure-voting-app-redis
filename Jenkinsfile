@@ -11,6 +11,10 @@ pipeline {
             steps {
                 powershell 'docker images -a'
                 powershell """
+                    [Environment]::SetEnvironmentVariable(\"LCOW_SUPPORTED\", \"1\", \"Machine\")
+                    Restart-Service docker
+                """
+                powershell """
                     cd azure-vote/
                     docker images -a
                     docker build -t jenkins-pipeline .
