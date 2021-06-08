@@ -11,7 +11,7 @@ pipeline {
             steps {
                 powershell 'docker images -a'
                 powershell """
-                    & $Env:ProgramFiles\\Docker\\Docker\\DockerCli.exe -SwitchLinuxEngine
+                    & "C:\\Program Files\\Docker\\Docker\\DockerCli.exe" -SwitchLinuxEngine
                     sleep 10
                 """
                 powershell """
