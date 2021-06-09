@@ -42,6 +42,7 @@ pipeline {
       stage('Run Tests') {
          steps {
             powershell """
+               hostname
                pytest ./tests/test_sample.py
             """
          }
