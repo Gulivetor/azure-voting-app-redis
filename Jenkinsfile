@@ -42,7 +42,6 @@ pipeline {
       stage('Run Tests') {
          steps {
             powershell """
-               $Env:Path
                pytest ./tests/test_sample.py
             """
          }
