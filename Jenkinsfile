@@ -58,9 +58,11 @@ pipeline {
             echo "Workspace is $WORKSPACE"
             dir("$WORKSPACE/azure-vote") {
                script {
-                  docker.withRegistry('https://index.docker.io/', 'Dockerhub-token') {
-                     def image = docker.build('gullivetor/jenkins-course:latest')
-                     image.push
+                  withDockerRegistry(credentialsId: 'Dockerhub-pass') {
+                     powershell """
+                        docker tag gullivetor/redis:lts gullivetor/redis:${env.BUILD_ID}
+                        docker push gullivetor/redis:${env.BUILD_ID}
+                     """
                   }
                }
             }
